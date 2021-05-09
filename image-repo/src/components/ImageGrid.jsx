@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Modal, GridList } from '@material-ui/core';
+import { Modal, GridList, TextField } from '@material-ui/core';
 
 import GridListTile from '@material-ui/core/GridListTile';
 import GridListTileBar from '@material-ui/core/GridListTileBar';
@@ -37,7 +37,11 @@ export default function ImageGrid() {
   const [title, setTitle] = React.useState("");
   const [image, setImage] = React.useState("");
   const [desc, setDesc] = React.useState("");
-
+  const [search, setSearch] = React.useState("")
+ 
+	const handleChange = (e) => {
+    setSearch(e.target.value)
+  };
 
   const handleOpen = (image, title, desc) => {
     setOpen(true);
@@ -48,11 +52,20 @@ export default function ImageGrid() {
 
   return (
     <div className={classes.root}>
+      <form className={classes.root} noValidate autoComplete="off">
+        <TextField 
+          id="outlined-basic" 
+          label="Search" 
+          variant="outlined" 
+          value={search} 
+				  onChange={handleChange}
+          />
+      </form>
       <GridList cellHeight={300}  spacing={30} className={classes.gridList}>
         <GridListTile key="Subheader" cols={4} style={{ height: 'auto' }}>
           <ListSubheader component="div"></ListSubheader>
         </GridListTile>
-        {tileData.map((tile) => (
+        {tileData.filter(tile => (tile.title == search || search == "")).map((tile) => (
           <GridListTile key={tile.img}>
             <img src={tile.img} alt={tile.title} />
             <GridListTileBar

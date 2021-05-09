@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Modal, Card, CardHeader, CardMedia, CardContent } from '@material-ui/core';
+import { Modal, Card, TextField, CardMedia, CardContent } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
@@ -66,7 +66,6 @@ export default function Navbar() {
           <Typography variant="h6" className={classes.title}>
             Image Repo
           </Typography>
-          {/* search bar here */}
           {/* upload button here */}
           <Modal
             open={open}
